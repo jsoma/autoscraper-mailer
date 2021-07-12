@@ -164,10 +164,10 @@ df
 df.to_csv("bbc-headlines.csv", index=False)
 
 message = Mail(
-    from_email='js4571@columbia.edu',
-    to_emails='js4571@columbia.edu',
-    subject='Sending with Twilio SendGrid is Fun',
-    html_content='<strong>and easy to do anywhere, even with Python</strong>')
+    from_email=os.environ.get('FROM_EMAIL'),
+    to_emails=os.environ.get('TO_EMAIL'),
+    subject='Scraped content',
+    html_content="It's attached as an... attachment.")
 
 # https://www.twilio.com/blog/sending-email-attachments-with-twilio-sendgrid-python
 with open('bbc-headlines.csv', 'rb') as f:
