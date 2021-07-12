@@ -4,7 +4,7 @@ on:
   schedule:
     - cron: '0 3 * * *'
 jobs:
-  scrape:
+  scrape_and_email:
     runs-on: ubuntu-latest
     steps:
       - name: Check out this repo
@@ -15,13 +15,5 @@ jobs:
           python-version: '3.9'
       - name: Install all necessary packages
         run: pip install requests beautifulsoup4 pandas sendgrid
-      - name: Run the scraping script
+      - name: Run the scraping script and send email
         run: python scrape.py
-      - name: Commit and push if content changed
-        run: |-
-          git config user.name "Automated"
-          git config user.email "actions@users.noreply.github.com"
-          git add -A
-          timestamp=$(date -u)
-          git commit -m "Latest data: ${timestamp}" || exit 0
-          git push
