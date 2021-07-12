@@ -17,3 +17,5 @@ jobs:
         run: pip install requests beautifulsoup4 pandas sendgrid
       - name: Run the scraping script and send email
         run: python scrape.py
+        env:
+          SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
